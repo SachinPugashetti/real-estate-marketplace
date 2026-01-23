@@ -1,11 +1,12 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home.jsx";
-import SignIn from "./pages/Signin.jsx";
-import SignUp from "./pages/SignUp.jsx";
-import Profile from "./pages/Profile.jsx";
-import About from "./pages/About.jsx";
-import Header from "./components/Header.jsx";
+import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/Signup";
+import About from "./pages/About";
+import Profile from "./pages/Profile";
+import Header from "./components/Header";
+import PrivateRoute from "./components/PrivateRoute";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -14,8 +15,10 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<About />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
